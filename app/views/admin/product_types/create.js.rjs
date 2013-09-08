@@ -1,0 +1,11 @@
+if @product_type.valid?
+  page[:create_product_type_arrow].replace_html "&#9658;"
+  page[:create_product_type_title].replace_html t(:product_types)
+  page.visual_effect :toggle_blind, :create_product_type, :duration => 0.3, :afterFinish => 'function(effect) {effect.element.update("")}'
+  page.insert_html :top, :product_types, :partial => "product_type", :collection => [ @product_type ]
+  page[dom_id(@product_type)].visual_effect :highlight, :duration => 1.5
+else
+  page[:create_product_type].replace_html :partial => "new"
+  page[:create_product_type].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:product_type_alias].focus
+end

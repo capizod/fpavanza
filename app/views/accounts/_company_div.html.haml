@@ -1,0 +1,9 @@
+%div#company_account{ hidden }
+  .section
+  %table
+    %tr
+      %td
+        .label #{t :company_id}:
+        = f.select(:company_id, Company.all.map {|b| [b.name, b.id]}, { :selected => @account.company_id, :include_blank => t(:select_blank)},{ :style => "width:500px"  })
+      %td= spacer
+      %td= spacer

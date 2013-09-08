@@ -1,0 +1,14 @@
+%li.highlight[provider]
+
+  %ul.tools      
+    - if current_user.isSuper
+      %li=link_to(:edit, {:action => :edit, :id => provider.id}, {:remote  => true,
+          :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_provider');"})    
+      %li= link_to_delete(provider, :url => admin_provider_path(provider), :klass_name => 'provider')
+
+  - if current_user.isSuper
+    %span 
+      =link_to(provider.name, {:action => :edit, :id => provider.id}, {:remote  => true,
+          :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_provider');"})
+  - else
+    %span.black #{t provider.name}                    

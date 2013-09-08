@@ -1,0 +1,9 @@
+%li.highlight[bank]
+
+  %ul.tools    
+    %li= link_to_edit [:admin, bank]    
+    %li= link_to_delete [:admin, bank]
+
+  %span 
+    =link_to(bank.name, {:action => :edit, :id => bank.id}, {:remote  => true, :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_bank');"})      
+  

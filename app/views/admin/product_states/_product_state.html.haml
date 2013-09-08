@@ -1,0 +1,9 @@
+%li.highlight[product_state]
+
+  %ul.tools
+    %li= link_to_edit [:admin, product_state]    
+    %li= link_to_delete [:admin, product_state]
+  
+  %span 
+    =link_to(product_state.description, {:action => :edit, :id => product_state.id}, {:remote  => true, 
+              :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_product_state');"})

@@ -1,0 +1,14 @@
+.section
+  %table
+    %tr
+      %td
+        .label.top.req #{t :alias}:
+        = f.text_field :alias    
+    %tr
+      %td
+        .label.top.req #{t :description}:
+        = f.text_field :description    
+    %tr
+      %td
+        .label.top.req #{t :product_category}:
+        = f.select(:product_category_id, ProductCategory.all.map {|b| [b.description, b.id]}, { :selected => @product_type.product_category_id, :include_blank => t(:select_blank)},{ :style => "width:160px"  })            

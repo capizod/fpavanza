@@ -1,0 +1,2 @@
+page[:provider_types].replace_html render :partial => "admin/provider_types/provider_type", :collection => @provider_types
+page[:paginate].replace_html :partial => "shared/paginate"

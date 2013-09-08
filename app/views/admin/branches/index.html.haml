@@ -1,0 +1,18 @@
+= styles_for :branch
+
+.title_tools
+  = link_to_inline(:create_branch, new_admin_branch_path, :text => t(:create_branch))
+
+.title
+  %span#create_branch_title #{t :branches}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+
+.remote#create_branch{ hidden }
+
+.list#branches
+  - if @branches.any?
+    = render :partial => "branch", :collection => @branches
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate"

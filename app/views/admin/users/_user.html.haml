@@ -1,0 +1,21 @@
+%li.highlight[user]  
+
+  .indentfull
+    .tools
+      
+      - if current_user.isSuper
+        - if user != current_user
+          = link_to_confirm(user)
+        - else        
+          %span.grayed #{t :delete}?
+
+    - if current_user.isSuper
+      %span.black #{link_to(h(user.full_name), user)} (#{user.username})
+    - else
+      %span.black #{t user.full_name} (#{user.username})
+    %tt
+      %span.black 
+      - if user.admin
+        = "- #{t :user_admin}"       
+      
+      

@@ -1,0 +1,20 @@
+- edit ||= false
+- collapsed = session[:contact_extra].nil? # && @contact.errors.empty?
+= subtitle :contact_extra, collapsed, t(:extra_info)
+.section
+  %small#contact_extra_intro{ hidden_if(!collapsed) }
+    = t(:intro, t(:extra_info_small)) unless edit
+  #contact_extra{ hidden_if(collapsed) }
+    %table
+      = hook(:contact_extra_details_form, self, :f => f) do
+        %tr
+          %td
+            .label #{t :mobile}:
+            = f.text_field :mobile
+          %td= spacer
+          %td= spacer           
+        %tr
+          %td
+            = render "shared/address", :f => f, :asset => @contact, :type => 'business', :title => :address
+          %td= spacer
+          %td= spacer            

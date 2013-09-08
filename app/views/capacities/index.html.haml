@@ -1,0 +1,16 @@
+= styles_for :capacity
+
+= render 'entities/title_bar'
+
+.remote#create_capacity{ hidden }
+
+.remote#options{ hidden }
+
+.list#capacities
+  - if @capacities.any?
+    = render @capacities
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate_with_per_page"
+#export= render "shared/export"

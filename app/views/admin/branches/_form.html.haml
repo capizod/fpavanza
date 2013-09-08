@@ -1,0 +1,13 @@
+.section
+  %table
+    %tr
+      %td
+        .label.top.req #{t :name}:
+        = f.text_field :name
+    %tr
+      %td
+        .label.top.req #{t :bank}:
+        = f.select(:bank_id, Bank.all.map {|b| [b.name, b.id]}, { :selected => @branch.bank_id, :include_blank => t(:select_blank)},{ :style => "width:160px"  })
+        
+        
+            

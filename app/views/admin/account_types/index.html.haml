@@ -1,0 +1,18 @@
+= styles_for :account_type
+
+.title_tools  
+  = link_to_inline(:create_account_type, new_admin_account_type_path, :text => t(:create_account_type))
+
+.title
+  %span#create_account_type_title #{t :account_types}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+
+.remote#create_account_type{ hidden }
+
+.list#account_types
+  - if @account_types.any?
+    = render :partial => "account_type", :collection => @account_types
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate"

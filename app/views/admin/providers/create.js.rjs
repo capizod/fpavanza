@@ -1,0 +1,11 @@
+if @provider.valid?
+  page[:create_provider_arrow].replace_html "&#9658;"
+  page[:create_provider_title].replace_html t(:providers)
+  page.visual_effect :toggle_blind, :create_provider, :duration => 0.3, :afterFinish => 'function(effect) {effect.element.update("")}'
+  page.insert_html :top, :providers, :partial => "provider", :collection => [ @provider ]
+  page[dom_id(@provider)].visual_effect :highlight, :duration => 1.5
+else
+  page[:create_provider].replace_html :partial => "new"
+  page[:create_provider].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:provider_name].focus
+end

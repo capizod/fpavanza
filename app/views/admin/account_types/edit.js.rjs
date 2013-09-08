@@ -1,0 +1,21 @@
+id = dom_id(@account_type)
+
+if params[:cancel].true?     # <----------------- Hide [Edit account_type]
+  page[id].replace :partial => "account_type", :collection => [ @account_type ]
+
+else # <----------------------------------------  Show [Edit account_type] form.
+
+  if @previous                                    # Hide open [Edit account_type] form if any.
+    if @previous.is_a?(AccountType)                      # Previous account_type still exists?
+      page[dom_id(@previous)].replace :partial => "account_type", :collection => [ @previous ]
+    else
+      page.call "crm.flick", "account_type_#{@previous}", :remove
+    end
+  end
+
+  page.call "crm.highlight_off", id               # Disable onMouseOver for the list item.
+  page.call "crm.hide_form", :create_account_type         # Hide [Create account_type] form if any.
+  page[id].replace_html :partial => "edit"        # Show [Edit account_type] form.
+  page[:account_type_name].focus
+
+end

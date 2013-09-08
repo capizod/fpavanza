@@ -1,0 +1,35 @@
+id = dom_id(@capacity)
+
+if params[:cancel].true?     # <----------------- Hide [Edit capacity]
+
+  if called_from_landing_page?
+    page.call "crm.flip_form", :edit_capacity
+    page.call "crm.set_title", :edit_capacity, h(@capacity.name)
+  else                                            # Called from capacities list item...
+    page[id].replace :partial => "capacity", :collection => [ @capacity ]
+  end
+
+else # <----------------------------------------- Show [Edit capacity] form.
+
+  if params[:cancel].blank?                       # Called from capacities list item...
+    if @previous                                  # Hide open [Edit capacity] form if any.
+      if @previous.is_a?(Capacity)
+        page[dom_id(@previous)].replace :partial => "capacity", :collection => [ @previous ]
+      else
+        page.call "crm.flick", "capacity_#{@previous}", :remove
+      end
+    end
+    page.call "crm.highlight_off", id             # Disable onMouseOver for the list item.
+    page.call "crm.hide_form", :create_capacity    # Hide [Create capacity] form if any.
+    page[id].replace_html :partial => "edit"      # Show [Edit capacity] form.
+
+  elsif params[:cancel].false?                    # Called from title of the capacity landing page...
+    page[:edit_capacity].replace_html :partial => "edit"
+    page.call "crm.flip_form", :edit_capacity
+    page.call "crm.set_title", :edit_capacity, "#{t :edit} #{h(@capacity.name)}"
+  end
+  
+  page[:capacity_name].focus
+
+  hook(:edit_capacity_rjs, self, :page => page)
+end

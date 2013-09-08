@@ -1,0 +1,21 @@
+id = dom_id(@company)
+
+if params[:cancel].true?     # <----------------- Hide [Edit company]
+  page[id].replace :partial => "company", :collection => [ @company ]
+
+else # <----------------------------------------  Show [Edit company] form.
+
+  if @previous                                    # Hide open [Edit company] form if any.
+    if @previous.is_a?(providerType)                      # Previous company still exists?
+      page[dom_id(@previous)].replace :partial => "company", :collection => [ @previous ]
+    else
+      page.call "crm.flick", "company_#{@previous}", :remove
+    end
+  end
+
+  page.call "crm.highlight_off", id               # Disable onMouseOver for the list item.
+  page.call "crm.hide_form", :create_company         # Hide [Create company] form if any.
+  page[id].replace_html :partial => "edit"        # Show [Edit company] form.
+  page[:company_name].focus
+
+end

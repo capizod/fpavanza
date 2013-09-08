@@ -1,0 +1,6 @@
+.title= h(@account_type.name)
+
+%p
+  = link_to t(:edit), edit_admin_account_type_path(@account_type)
+  |
+  = link_to t(:back), admin_account_types_path

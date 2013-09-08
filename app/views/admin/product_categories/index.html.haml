@@ -1,0 +1,18 @@
+= styles_for :product_category
+
+.title_tools  
+  = link_to_inline(:create_product_category, new_admin_product_category_path, :text => t(:create_product_category))
+
+.title
+  %span#create_product_category_title #{t :product_categories}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+
+.remote#create_product_category{ hidden }
+
+.list#product_categories
+  - if @product_categories.any?
+    = render :partial => "product_category", :collection => @product_categories
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate"

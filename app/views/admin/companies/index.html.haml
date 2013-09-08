@@ -1,0 +1,18 @@
+= styles_for :company
+
+.title_tools
+  = link_to_inline(:create_company, new_admin_company_path, :text => t(:create_company))
+
+.title
+  %span#create_company_title #{t :companies}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+
+.remote#create_company{ hidden }
+
+.list#companies
+  - if @companies.any?
+    = render :partial => "company", :collection => @companies
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate"

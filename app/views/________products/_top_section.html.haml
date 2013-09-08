@@ -1,0 +1,37 @@
+
+= hook(:product_top_section, self, :f => f) do
+  .section
+    %table
+      %tr
+        %td
+          .label.top.req #{t :name}:
+          = f.text_field :name, :style => "width:500px"
+        %td= spacer         
+        %td= spacer              
+      %tr
+        %td
+          .label.top.req #{t :product_type}:
+          = f.select(:product_type_id, ProductType.all.map {|b| [b.description, b.id]}, { :selected => @product.product_type_id, :include_blank => t(:select_blank)},{ :style => "width:160px"  })
+        %td= spacer
+        %td= spacer     
+      %tr
+        %td
+          .label #{t :start_date}:
+          = f.text_field :starts_on, :value => f.object.starts_on, :style => "width:110px", :autocomplete => :off, :class => 'date'
+        %td= spacer       
+        %td
+          .label #{t :end_date}:
+          = f.text_field :ends_on, :value => f.object.ends_on, :style => "width:110px", :autocomplete => :off, :class => 'date'
+      %tr
+        %td
+          .label.top.req #{t :account_number}:
+          = f.text_field :account_number, :style => "width:500px"
+        %td= spacer         
+        %td= spacer 
+      %tr
+        %td
+          .label.top.req #{t :provider}:
+          = f.select(:provider_id, Provider.all.map {|b| [b.name, b.id]}, { :selected => @product.provider_id, :include_blank => t(:select_blank)},{ :style => "width:160px"  })
+        %td= spacer         
+        %td= spacer
+        

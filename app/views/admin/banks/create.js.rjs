@@ -1,0 +1,11 @@
+if @bank.valid?
+  page[:create_bank_arrow].replace_html "&#9658;"
+  page[:create_bank_title].replace_html t(:banks)
+  page.visual_effect :toggle_blind, :create_bank, :duration => 0.3, :afterFinish => 'function(effect) {effect.element.update("")}'
+  page.insert_html :top, :banks, :partial => "bank", :collection => [ @bank ]
+  page[dom_id(@bank)].visual_effect :highlight, :duration => 1.5
+else
+  page[:create_bank].replace_html :partial => "new"
+  page[:create_bank].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:bank_name].focus
+end

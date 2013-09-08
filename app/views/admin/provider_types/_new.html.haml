@@ -1,0 +1,12 @@
+
+= form_for([:admin, @provider_type], :html => one_submit_only(:provider_type).merge({:autocomplete => 'off'}), :remote => true) do |f|
+  = link_to_close new_admin_provider_type_path
+
+  = f.error_messages :object_name => t('provider_type')
+
+  = render "admin/provider_types/form", :f => f
+
+  .buttonbar
+    = f.submit t(:create_provider_type)
+    #{t :or}
+    = link_to_cancel new_admin_provider_type_path

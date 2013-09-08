@@ -1,0 +1,20 @@
+%li.highlight[capacity]
+
+  %ul.tools
+    = hook(:capacity_tools_before, self, :capacity => capacity)
+
+    - if can?(:update, capacity)
+      %li= link_to_edit(capacity)
+
+    - if shown_on_landing_page?
+      %li= link_to_discard(capacity)
+
+    - if can?(:destroy, capacity)
+      %li= link_to_delete(capacity)
+
+  .indentslim    
+    %span.black #{t capacity.name.titleize} - 
+    %tt
+      = capacity_summary(capacity)   
+
+    = hook(:capacity_bottom, self, :capacity => capacity)

@@ -1,0 +1,51 @@
+
+= hook(:product_top_section, self, :f => f) do
+  .section
+    %table
+      %tr
+        %td
+          .label.top.req #{t :name}:
+          = f.text_field :name, :style => "width:500px"
+        %td= spacer         
+        %td= spacer   
+      %tr
+        %td
+          .label.top.req #{t :assigned_to}:
+          = f.select(:user_id, User.all.map {|b| [b.first_name + ' ' + b.last_name, b.id]}, { :selected => @product.user_id, :include_blank => t(:select_blank)},{ :style => "width:500px"  })   
+        %td= spacer
+        %td= spacer             
+      %tr
+        %td
+          .label.top.req #{t :product_type}:
+          = f.select(:product_type_id, ProductType.all.map {|b| [b.description, b.id]}, { :selected => @product.product_type_id, :include_blank => t(:select_blank)},{ :style => "width:160px"  })
+        %td= spacer
+        %td
+          .label.top.req #{t :montomex}:
+          = f.text_field :monto_mex, :value => @product.monto_mex ? @product.monto_mex : "", :style => "width:210px; text-align:right;"           
+      %tr
+        %td
+          .label #{t :start_date}:
+          = f.text_field :starts_on, :value => f.object.starts_on, :style => "width:110px", :autocomplete => :off, :class => 'date'
+        %td= spacer       
+        %td
+          .label #{t :end_date}:
+          = f.text_field :ends_on, :value => f.object.ends_on, :style => "width:110px", :autocomplete => :off, :class => 'date'      
+      %tr
+        %td
+          .label.top.req #{t :product_state}:
+          = f.select(:product_state_id, ProductState.all.map {|b| [b.description, b.id]}, { :selected => @product.product_state_id, :include_blank => t(:select_blank)},{ :style => "width:220px"  })
+        %td= spacer         
+        %td= spacer    
+      %tr
+        %td
+          .label.top.req #{t :provider_type}:
+          = f.select(:provider_type_id, ProviderType.all.map {|b| [b.description, b.id]}, { :selected => @product.provider_type_id, :include_blank => t(:select_blank)},{ :style => "width:220px"  })
+        %td= spacer         
+        %td= spacer
+      %tr
+        %td
+          .label.top.req #{t :account_number}:
+          = f.text_field :account_number, :style => "width:500px" 
+        %td= spacer         
+        %td= spacer    
+        

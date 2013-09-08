@@ -1,0 +1,14 @@
+= simple_form_for(@product, :html => one_submit_only(:product), :remote => true) do |f|
+  = link_to_close new_product_path
+
+  = f.error_messages :object_name => t('product')    
+
+  = render "products/top_section", :f => f     
+  = fields_for(@account) do |a|
+    = a.hidden_field :id
+    = a.hidden_field :name  
+      
+  .buttonbar
+    = f.submit t(:create_product), :onclick => "crm.create_product()"
+    #{t :or}
+    = link_to_cancel new_product_path

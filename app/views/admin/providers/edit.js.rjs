@@ -1,0 +1,21 @@
+id = dom_id(@provider)
+
+if params[:cancel].true?     # <----------------- Hide [Edit provider]
+  page[id].replace :partial => "provider", :collection => [ @provider ]
+
+else # <----------------------------------------  Show [Edit provider] form.
+
+  if @previous                                    # Hide open [Edit provider] form if any.
+    if @previous.is_a?(Provider)                      # Previous provider still exists?
+      page[dom_id(@previous)].replace :partial => "provider", :collection => [ @previous ]
+    else
+      page.call "crm.flick", "provider_#{@previous}", :remove
+    end
+  end
+
+  page.call "crm.highlight_off", id               # Disable onMouseOver for the list item.
+  page.call "crm.hide_form", :create_provider         # Hide [Create provider] form if any.
+  page[id].replace_html :partial => "edit"        # Show [Edit provider] form.
+  page[:provider_name].focus
+
+end

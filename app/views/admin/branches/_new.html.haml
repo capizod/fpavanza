@@ -1,0 +1,13 @@
+
+= form_for([:admin, @branch], :html => one_submit_only(:branch).merge({:autocomplete => 'off'}), :remote => true) do |f|
+  = link_to_close new_admin_branch_path
+  = f.hidden_field :bank_id
+
+  = f.error_messages :object_name => t('branch')
+
+  = render "admin/branches/form", :f => f
+
+  .buttonbar
+    = f.submit t(:create_branch)
+    #{t :or}
+    = link_to_cancel new_admin_branch_path

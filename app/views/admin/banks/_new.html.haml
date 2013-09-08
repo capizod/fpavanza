@@ -1,0 +1,12 @@
+
+= form_for([:admin, @bank], :html => one_submit_only(:bank).merge({:autocomplete => 'off'}), :remote => true) do |f|
+  = link_to_close new_admin_bank_path
+
+  = f.error_messages :object_name => t('bank')
+
+  = render "admin/banks/form", :f => f
+
+  .buttonbar
+    = f.submit t(:create_bank)
+    #{t :or}
+    = link_to_cancel new_admin_bank_path

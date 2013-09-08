@@ -1,0 +1,2 @@
+page[:banks].replace_html render :partial => "admin/banks/bank", :collection => @banks
+page[:paginate].replace_html :partial => "shared/paginate"

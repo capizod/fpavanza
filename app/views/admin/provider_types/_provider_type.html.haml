@@ -1,0 +1,9 @@
+%li.highlight[provider_type]
+
+  %ul.tools
+    %li= link_to_edit [:admin, provider_type]    
+    %li= link_to_delete [:admin, provider_type]
+  
+  %span 
+    =link_to(provider_type.description, {:action => :edit, :id => provider_type.id}, {:remote  => true, 
+              :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_provider_type');"})        

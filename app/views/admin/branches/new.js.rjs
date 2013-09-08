@@ -1,0 +1,9 @@
+page.call "crm.flip_form", :create_branch
+
+unless params[:cancel].true?
+  page[:create_branch].replace_html :partial => "new"
+  page[:empty].replace_html ""
+  page.call "crm.set_title", :create_branch, t(:create_branch)
+else
+  page.call "crm.set_title", :create_branch, t(:branches)
+end

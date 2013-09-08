@@ -1,0 +1,18 @@
+= styles_for :product_state
+
+.title_tools
+  = link_to_inline(:create_product_state, new_admin_product_state_path, :text => t(:create_product_state))
+
+.title
+  %span#create_product_state_title #{t :product_states}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+
+.remote#create_product_state{ hidden }
+
+.list#product_states
+  - if @product_states.any?
+    = render :partial => "product_state", :collection => @product_states
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate"

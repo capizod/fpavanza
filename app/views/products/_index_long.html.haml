@@ -1,0 +1,20 @@
+%li.highlight[product]
+
+  %ul.tools
+    = hook(:product_tools_before, self, :product => product)
+
+    - if can?(:update, product)
+      %li= link_to_edit(product)
+
+    - if shown_on_landing_page?
+      %li= link_to_discard(product)
+
+    - if can?(:destroy, product)
+      %li= link_to_delete(product)
+
+  .indentslim    
+    %span.black #{t product.name.titleize}  
+    %tt
+      = product_summary(product)   
+
+    = hook(:product_bottom, self, :product => product)

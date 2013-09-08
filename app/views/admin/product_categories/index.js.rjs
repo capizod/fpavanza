@@ -1,0 +1,2 @@
+page[:product_categories].replace_html render :partial => "admin/product_categories/product_category", :collection => @product_categories
+page[:paginate].replace_html :partial => "shared/paginate"

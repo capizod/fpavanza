@@ -1,0 +1,9 @@
+%li.highlight[company]
+
+  %ul.tools    
+    %li= link_to_edit [:admin, company]    
+    %li= link_to_delete [:admin, company]
+  
+  %span 
+    =link_to(company.name, {:action => :edit, :id => company.id}, {:remote  => true,
+          :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_company');"})      

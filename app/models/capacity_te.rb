@@ -1,0 +1,3 @@
+class CapacityTe < ActiveRecord::Base
+  # attr_accessible :title, :body
+end

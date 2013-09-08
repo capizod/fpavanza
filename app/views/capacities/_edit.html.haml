@@ -1,0 +1,12 @@
+.remote
+  = simple_form_for(@capacity, :html => one_submit_only(:capacity), :remote => true) do |f|
+    = link_to_close edit_capacity_path(@capacity)
+
+    = f.error_messages :object_name => t('capacity')
+    
+    = render "capacities/top_section", :f => f, :edit => true 
+    
+    .buttonbar
+      = f.submit t(:save_capacity), :onclick => "crm.save_capacity()"
+      #{t :or}
+      = link_to_cancel edit_capacity_path(@capacity)

@@ -1,0 +1,41 @@
+- edit ||= false
+.section
+  %table
+    %tr
+      %td
+        .label.top.req #{t :username}:
+        = f.text_field :username
+      %td= spacer
+      %td= spacer        
+    %tr
+      %td
+        .label #{t :first_name}:
+        = f.text_field :first_name
+      %td= spacer    
+      %td
+        .label #{t :last_name}:
+        = f.text_field :last_name     
+                
+    %tr
+      %td
+        .label #{t :password}:
+        = f.password_field :password
+      %td= spacer    
+      %td
+        .label #{t :password_confirmation}:
+        = f.password_field :password_confirmation              
+    %tr
+      %td
+        .label.top.req #{t :email}:
+        = f.text_field :email  
+      %td= spacer  
+      %td
+        .label #{t :consultant_key}:
+        = f.text_field :consultant_key                
+    %tr
+      %td(colspan=3)
+        .check_box(style="margin-top:6px")
+          -# Sorry, you can't revoke Admin rights from yourself.
+          = f.check_box(:admin, { :disabled => edit && @user == current_user })
+          %label{:for => 'user_admin'}
+            = t(:user_is_admin)

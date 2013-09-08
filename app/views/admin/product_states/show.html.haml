@@ -1,0 +1,6 @@
+.title= h(@product_state.alias)
+
+%p
+  = link_to t(:edit), edit_admin_product_state_path(@product_state)
+  |
+  = link_to t(:back), admin_product_states_path

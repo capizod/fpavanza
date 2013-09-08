@@ -1,0 +1,11 @@
+if @company.valid?
+  page[:create_company_arrow].replace_html "&#9658;"
+  page[:create_company_title].replace_html t(:companies)
+  page.visual_effect :toggle_blind, :create_company, :duration => 0.3, :afterFinish => 'function(effect) {effect.element.update("")}'
+  page.insert_html :top, :companies, :partial => "company", :collection => [ @company ]
+  page[dom_id(@company)].visual_effect :highlight, :duration => 1.5
+else
+  page[:create_company].replace_html :partial => "new"
+  page[:create_company].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:company_name].focus
+end

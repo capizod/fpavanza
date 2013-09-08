@@ -1,0 +1,18 @@
+= styles_for :provider_type
+
+.title_tools
+  = link_to_inline(:create_provider_type, new_admin_provider_type_path, :text => t(:create_provider_type))
+
+.title
+  %span#create_provider_type_title #{t :provider_types}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+
+.remote#create_provider_type{ hidden }
+
+.list#provider_types
+  - if @provider_types.any?
+    = render :partial => "provider_type", :collection => @provider_types
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate"

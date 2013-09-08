@@ -1,0 +1,10 @@
+id = dom_id(@product_state)
+
+if @product_state.errors.empty?
+  page[id].replace :partial => "product_state", :collection => [ @product_state ]
+  page[id].visual_effect :highlight, :duration => 1.0
+else
+  page[id].replace_html :partial => "edit"
+  page[id].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:product_state_description].focus
+end

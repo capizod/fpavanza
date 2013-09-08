@@ -1,0 +1,2 @@
+page[:account_types].replace_html render :partial => "admin/account_types/account_type", :collection => @account_types
+page[:paginate].replace_html :partial => "shared/paginate"

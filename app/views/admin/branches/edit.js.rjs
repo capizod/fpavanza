@@ -1,0 +1,21 @@
+id = dom_id(@branch)
+
+if params[:cancel].true?     # <----------------- Hide [Edit Branch]
+  page[id].replace :partial => "branch", :collection => [ @branch ]
+
+else # <----------------------------------------  Show [Edit Branch] form.
+
+  if @previous                                    # Hide open [Edit Branch] form if any.
+    if @previous.is_a?(Branch)                      # Previous branch still exists?
+      page[dom_id(@previous)].replace :partial => "branch", :collection => [ @previous ]
+    else
+      page.call "crm.flick", "branch_#{@previous}", :remove
+    end
+  end
+
+  page.call "crm.highlight_off", id               # Disable onMouseOver for the list item.
+  page.call "crm.hide_form", :create_branch         # Hide [Create Branch] form if any.
+  page[id].replace_html :partial => "edit"        # Show [Edit Branch] form.
+  page[:branch_name].focus
+
+end

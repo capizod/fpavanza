@@ -1,0 +1,19 @@
+= styles_for :provider
+
+.title_tools
+  - if current_user.isSuper
+    = link_to_inline(:create_provider, new_admin_provider_path, :text => t(:create_provider))
+
+.title
+  %span#create_provider_title #{t :providers}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+
+.remote#create_provider{ hidden }
+
+.list#providers
+  - if @providers.any?
+    = render :partial => "provider", :collection => @providers
+  - else
+    = render "shared/empty"
+
+#paginate= render "shared/paginate"

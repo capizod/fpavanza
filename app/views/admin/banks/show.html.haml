@@ -1,0 +1,6 @@
+.title= h(@bank.name)
+
+%p
+  = link_to t(:edit), edit_admin_bank_path(@bank)
+  |
+  = link_to t(:back), admin_banks_path

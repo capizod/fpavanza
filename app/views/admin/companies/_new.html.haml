@@ -1,0 +1,12 @@
+
+= form_for([:admin, @company], :html => one_submit_only(:company).merge({:autocomplete => 'off'}), :remote => true) do |f|
+  = link_to_close new_admin_company_path
+
+  = f.error_messages :object_name => t('company')
+
+  = render "admin/companies/form", :f => f
+
+  .buttonbar
+    = f.submit t(:create_company)
+    #{t :or}
+    = link_to_cancel new_admin_company_path

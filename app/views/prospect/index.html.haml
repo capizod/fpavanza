@@ -1,0 +1,10 @@
+= styles_for :account
+.title
+  %span#title #{t :my_prospects}
+.list#accounts
+  - unless @my_accounts.empty?
+    = render :partial => "prospect/account", :collection => @my_accounts.limit(30)
+    = show_hidden_entities_message(@my_accounts.count, 'account', 30)
+  - else
+    #{t :no_account_records}
+

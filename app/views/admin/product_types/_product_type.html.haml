@@ -1,0 +1,11 @@
+%li.highlight[product_type]
+
+  %ul.tools    
+    %li= link_to_edit [:admin, product_type]    
+    %li= link_to_delete [:admin, product_type]
+
+  %span 
+    =link_to(product_type.alias, {:action => :edit, :id => product_type.id}, {:remote  => true,
+          :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_product_type');"})
+  %span
+    = " - " + product_type.description

@@ -1,0 +1,9 @@
+%li.highlight[account_type]
+
+  %ul.tools    
+    %li= link_to_edit [:admin, account_type]    
+    %li= link_to_delete [:admin, account_type]
+  
+  %span 
+    =link_to(account_type.name, {:action => :edit, :id => account_type.id}, {:remote  => true, :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_account_type');"})      
+  

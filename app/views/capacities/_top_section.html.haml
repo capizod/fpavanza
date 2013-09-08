@@ -1,0 +1,37 @@
+
+= hook(:capacity_top_section, self, :f => f) do
+  .section
+    %table
+      %tr
+        %td
+          .label.top.req #{t :emploee_id}:
+          = f.text_field :capacity_emploee_id, :style => "width:250px"
+        %td= spacer         
+        %td
+          .label.top.req #{t :capacity_tc}:
+          = f.select(:capacity_tc_id, CapacityTc.all.map {|b| [b.name, b.id]}, { :selected => @capacity.capacity_tc_id, :include_blank => t(:select_blank)},{ :style => "width:250px"  })
+        %td= spacer
+        %td
+          .label.top.req #{t :capacity_te}:
+          = f.select(:capacity_te_id, CapacityTe.all.map {|b| [b.name, b.id]}, { :selected => @capacity.capacity_te_id, :include_blank => t(:select_blank)},{ :style => "width:250px"  })                          
+      %tr
+        %td
+          .label.top.req #{t :region}:
+          = f.select(:region_id, Region.all.map {|b| [b.name, b.id]}, { :selected => @capacity.region_id, :include_blank => t(:select_blank)},{ :style => "width:250px"  })          
+        %td= spacer
+        %td
+          .label.top.req #{t :city}:
+          = f.select(:city_id, City.all.map {|b| [b.name, b.id]}, { :selected => @capacity.city_id, :include_blank => t(:select_blank)},{ :style => "width:250px"  })
+        %td= spacer
+        %td= spacer                       
+      %tr
+        %td
+          .label #{t :capacity_add_date}:
+          = f.text_field :capacity_add_date, :value => f.object.capacity_add_date, :style => "width:250px", :autocomplete => :off, :class => 'date'
+        %td= spacer         
+        %td
+          .label.top.req #{t :montomex}:
+          = f.text_field :monto_mex, :value => @capacity.monto_mex ? @capacity.monto_mex : "", :style => "width:250px; text-align:right;"
+        %td= spacer
+        %td= spacer                                                  
+        

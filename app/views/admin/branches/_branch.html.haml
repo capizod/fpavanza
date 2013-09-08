@@ -1,0 +1,9 @@
+%li.highlight[branch]
+
+  %ul.tools      
+    %li= link_to t(:edit), edit_admin_branch_path(branch), :class => 'edit'    
+    %li= link_to_delete(branch, :url => admin_branch_path(branch), :klass_name => 'Branch')
+
+  %span 
+    =link_to(branch.name, {:action => :edit, :id => branch.id}, {:remote  => true,
+          :onclick => "this.href = this.href.split('?')[0] + '?previous='+crm.find_form('edit_branch');"})

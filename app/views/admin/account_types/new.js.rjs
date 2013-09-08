@@ -1,0 +1,9 @@
+page.call "crm.flip_form", :create_account_type
+
+unless params[:cancel].true?
+  page[:create_account_type].replace_html :partial => "new"
+  page[:empty].replace_html ""
+  page.call "crm.set_title", :create_account_type, t(:create_account_type)
+else
+  page.call "crm.set_title", :create_account_type, t(:account_types)
+end

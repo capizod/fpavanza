@@ -1,0 +1,3 @@
+products = entity.products.order('updated_at DESC').paginate(:page => params[:page], :per_page => 20)
+page['products'].replace_html :partial => 'products/product', :collection => products
+page['products_pagination'].replace_html will_paginate(products, :container => false, :params => {:action => :products})

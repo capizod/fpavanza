@@ -1,0 +1,12 @@
+
+= form_for([:admin, @account_type], :html => one_submit_only(:account_type).merge({:autocomplete => 'off'}), :remote => true) do |f|
+  = link_to_close new_admin_account_type_path
+
+  = f.error_messages :object_name => t('account_type')
+
+  = render "admin/account_types/form", :f => f
+
+  .buttonbar
+    = f.submit t(:create_account_type)
+    #{t :or}
+    = link_to_cancel new_admin_account_type_path

@@ -1,0 +1,11 @@
+if @product_category.valid?
+  page[:create_product_category_arrow].replace_html "&#9658;"
+  page[:create_product_category_title].replace_html t(:product_categories)
+  page.visual_effect :toggle_blind, :create_product_category, :duration => 0.3, :afterFinish => 'function(effect) {effect.element.update("")}'
+  page.insert_html :top, :product_categories, :partial => "product_category", :collection => [ @product_category ]
+  page[dom_id(@product_category)].visual_effect :highlight, :duration => 1.5
+else
+  page[:create_product_category].replace_html :partial => "new"
+  page[:create_product_category].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:product_category_description].focus
+end

@@ -1,0 +1,23 @@
+.section
+  %table
+    %tr
+      %td
+        .label.top.req #{t :name}:
+        = f.text_field :name
+    %tr
+      %td
+        .label.top.req #{t :provider_type}:
+        = f.select(:provider_type_id, ProviderType.all.map {|b| [b.description, b.id]}, { :selected => @provider.provider_type_id, :include_blank => t(:select_blank)},{ :style => "width:160px"  })
+    %tr
+      %td
+        .label.top.req #{t :provider_key}:
+        = f.text_field :provider_key         
+    %tr
+      %td
+        .label.top.req #{t :internal_key}:
+        = f.text_field :internal_key  
+    %tr
+      %td
+        .label.top.req #{t :account_number}:
+        = f.text_field :account_number, :style => "width:500px"        
+            

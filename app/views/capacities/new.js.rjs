@@ -1,0 +1,10 @@
+page.call "crm.flick", :empty, :toggle
+page.call "crm.flip_form", :create_capacity
+
+unless params[:cancel].true?
+  page[:create_capacity].replace_html :partial => "new"
+  page.call "crm.set_title", :create_capacity, t(:create_capacity)
+  hook(:new_capacity_rjs, self, :page => page)
+else
+  page.call "crm.set_title", :create_capacity, t(:capacities)
+end

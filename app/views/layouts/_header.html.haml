@@ -1,0 +1,15 @@
+#header
+  #welcome
+    - if current_user      
+      -# This span gets updated on the fly if user changes her name.
+      %span> &nbsp;&nbsp;
+      %span> &nbsp;&nbsp;
+      
+      - if current_user.admin?
+        = link_to(t(:admin), admin_path) << " |"
+      = link_to(t(:logout), logout_path, :method => :delete)
+      = render "/layouts/jumpbox"
+    - else
+      = link_to(t(:login), login_path) << " |"
+      = link_to(t(:sign_up), signup_path) << " |" if can_signup?
+  

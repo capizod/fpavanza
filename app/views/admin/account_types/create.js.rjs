@@ -1,0 +1,11 @@
+if @account_type.valid?
+  page[:create_account_type_arrow].replace_html "&#9658;"
+  page[:create_account_type_title].replace_html t(:account_types)
+  page.visual_effect :toggle_blind, :create_account_type, :duration => 0.3, :afterFinish => 'function(effect) {effect.element.update("")}'
+  page.insert_html :top, :account_types, :partial => "account_type", :collection => [ @account_type ]
+  page[dom_id(@account_type)].visual_effect :highlight, :duration => 1.5
+else
+  page[:create_account_type].replace_html :partial => "new"
+  page[:create_account_type].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:account_type_name].focus
+end

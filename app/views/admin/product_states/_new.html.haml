@@ -1,0 +1,12 @@
+
+= form_for([:admin, @product_state], :html => one_submit_only(:product_state).merge({:autocomplete => 'off'}), :remote => true) do |f|
+  = link_to_close new_admin_product_state_path
+
+  = f.error_messages :object_name => t('product_state')
+
+  = render "admin/product_states/form", :f => f
+
+  .buttonbar
+    = f.submit t(:create_product_state)
+    #{t :or}
+    = link_to_cancel new_admin_product_state_path

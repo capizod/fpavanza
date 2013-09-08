@@ -1,0 +1,25 @@
+= hook(:account_top_section, self, :f => f) do
+  .section
+    %table
+      %tr
+        %td(colspan="5")
+          .label.top.req #{t :name}:
+          = f.text_field :name, :style => "width:500px"                    
+
+      %tr
+        %td(colspan="4")
+          .label #{t :account_type}:
+          = f.select(:account_type_id, AccountType.all.map {|b| [b.name, b.id]}, { :selected => @account.account_type_id, :include_blank => t(:select_blank)},{ :style => "width:500px", :onchange => "crm.show_account_type_fields(this.value)"})
+        %td= spacer
+
+      %tr
+        %td(colspan="4")
+          .label #{t :assigned_to}:
+          = f.select(:user_id, User.all.map {|b| [b.first_name + ' ' + b.last_name, b.id]}, { :selected => @account.user_id},{ :style => "width:500px"  })   
+        %td= spacer
+    
+      %tr
+        %td(colspan="5")
+          = f.hidden_field :account_number, :style => "width:500px"          
+
+      = hook(:account_top_section_bottom, self, :f => f)

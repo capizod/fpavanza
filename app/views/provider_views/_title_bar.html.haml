@@ -1,0 +1,11 @@
+- model_name = "provider"
+- model_klass = "provider".camelcase.constantize
+- model_parent = "provider_view"
+
+.title_tools  
+  .create_asset
+    = link_to_inline("create_#{model_parent}".to_sym, send("new_#{model_parent}_path"), :text => t("create_#{model_parent}".to_sym))
+
+.title
+  %span{:id => "create_#{model_parent}_title"} #{t controller_name.to_sym}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")

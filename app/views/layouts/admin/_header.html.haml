@@ -1,0 +1,8 @@
+#header
+  #welcome
+    %span> &nbsp;&nbsp;     
+    %span> &nbsp;&nbsp;
+    
+    = link_to(t(:back_to_crm), root_path) << " |"
+    = link_to(t(:logout), logout_path, :method => :delete)
+    = render "/layouts/jumpbox"  

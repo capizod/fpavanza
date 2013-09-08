@@ -1,0 +1,21 @@
+- if (template = template_for_current_view)
+  = render(template, :account => @account)
+- else
+  
+  -# default view
+
+  = styles_for :contact, :product
+
+  = render 'accounts/title_bar', :account => @account
+
+  %div#edit_account{ hidden }
+  
+  = render :partial => "shared/timeline", :collection => @timeline
+
+  = hook(:show_account_bottom, self) do
+
+    = render :partial => "contacts/contacts", :locals => {:object => @account}        
+    
+    = render :partial => "products/products", :locals => {:object => @account}            
+
+    = load_select_popups_for(@account, :contacts, :products)

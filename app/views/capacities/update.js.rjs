@@ -1,0 +1,21 @@
+id = called_from_landing_page? ? "edit_capacity" : dom_id(@capacity)
+
+if @capacity.errors.empty?
+  if called_from_landing_page?
+    page.call "crm.flip_form", :edit_capacity
+    page.call "crm.set_title", :edit_capacity, @capacity.name
+    page << refresh_sidebar(:show, :summary)
+  else
+    page[id].replace :partial => "capacity", :collection => [ @capacity ]
+    page[id].visual_effect :highlight, :duration => 1.0
+    if called_from_index_page?
+      page << refresh_sidebar(:index)
+    else
+      page[:recently].replace :partial => "shared/recently"
+    end
+  end
+else  
+  page[id].replace_html :partial => "edit"
+  page[id].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:capacity_name].focus
+end

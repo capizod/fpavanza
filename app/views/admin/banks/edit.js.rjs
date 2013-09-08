@@ -1,0 +1,21 @@
+id = dom_id(@bank)
+
+if params[:cancel].true?     # <----------------- Hide [Edit bank]
+  page[id].replace :partial => "bank", :collection => [ @bank ]
+
+else # <----------------------------------------  Show [Edit bank] form.
+
+  if @previous                                    # Hide open [Edit bank] form if any.
+    if @previous.is_a?(Bank)                      # Previous bank still exists?
+      page[dom_id(@previous)].replace :partial => "bank", :collection => [ @previous ]
+    else
+      page.call "crm.flick", "bank_#{@previous}", :remove
+    end
+  end
+
+  page.call "crm.highlight_off", id               # Disable onMouseOver for the list item.
+  page.call "crm.hide_form", :create_bank         # Hide [Create bank] form if any.
+  page[id].replace_html :partial => "edit"        # Show [Edit bank] form.
+  page[:bank_name].focus
+
+end

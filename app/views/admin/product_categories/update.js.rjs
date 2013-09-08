@@ -1,0 +1,10 @@
+id = dom_id(@product_category)
+
+if @product_category.errors.empty?
+  page[id].replace :partial => "product_category", :collection => [ @product_category ]
+  page[id].visual_effect :highlight, :duration => 1.0
+else
+  page[id].replace_html :partial => "edit"
+  page[id].visual_effect :shake, :duration => 0.25, :distance => 6
+  page[:product_category_description].focus
+end

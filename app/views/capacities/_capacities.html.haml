@@ -1,0 +1,7 @@
+
+= onlycreatesection(object, :capacities)
+.list#capacities
+  - capacities = object.capacities.order('updated_at desc').paginate(:page => 1, :per_page => 20)
+  = render :partial => "capacities/capacity", :collection => capacities
+
+= will_paginate capacities, :id => 'capacities_pagination', :params => {:action => :capacities}
