@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Fat Free CRM [![TravisCI][travis-img-url]][travis-ci-url]
 
 [travis-img-url]: https://secure.travis-ci.org/fatfreecrm/fat_free_crm.png?branch=master
@@ -148,3 +149,9 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+=======
+fpavanza
+========
+
+Prueba de repositorio
+>>>>>>> a7c8338cf1fde64ff5ab648a5829b61f89730e99
